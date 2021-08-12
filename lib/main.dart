@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shop/screens/product_details_screen.dart';
+import 'package:shop/screens/products_overview_screen.dart';
 
 void main(List<String> args) {
   runApp(MyApp());
@@ -16,12 +18,15 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.green[800],
+        scaffoldBackgroundColor: Colors.grey[50]
+      ),
       title: 'My Shop',
-       home: Scaffold(
-         appBar: AppBar(
-           title: Text("My Shop"),
-         ),
-       ),
+       home:ProductsOverViewScreen(),
+       routes: {
+         ProductDetailScreen.routeName: (context) =>ProductDetailScreen()
+       },
     );
   }
 }
