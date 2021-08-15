@@ -14,16 +14,21 @@ class ProductsOverViewScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('My Shop'),
       ),
-      body:GridView.count(
-        primary: false,
-        padding: EdgeInsets.all(20),
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        crossAxisCount: 2,
-        children:loadedProduct.map((el){
-          return ProductItem(el.id,el.title,el.imageUrl,el.price);
-        }).toList() ,
+      body: GridView.builder(
+        padding: EdgeInsets.all(10),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 20,
+          childAspectRatio: 2 / 3
         ) ,
+        itemCount: loadedProduct.length, 
+        itemBuilder: (context,index) => ChangeNotifierProvider(
+          create: (context) =>loadedProduct[index],
+          child: ProductItem(),
+        )
+        
+        ),
     );
   }
 }
